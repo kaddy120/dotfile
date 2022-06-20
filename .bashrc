@@ -7,6 +7,15 @@ case $- in
     *i*) ;;
       *) return;;
 esac
+# source gruvbox color pallet
+. "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+
+# remaping caps_lock to esc key
+
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+
+# activate prompt colour
+color_prompt=yes
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -89,16 +98,24 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
+alias la='ls -AF'
 alias l='ls -CF'
-alias sl=ls
+alias sl='ls'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ~='cd ~'
 
+alias mkdir='mkdir -p'
+
+alias apti='sudo apt install'
+
+# some more gt aliases
 alias gs="git status"
 alias gc="git commit"
 alias gp="git push"
+
+#calendar aliases
+alias day='ncal -jb'
+alias pcal='ncal -b' #pretty calandar
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -123,3 +140,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+TERM=xterm-256color
