@@ -7,8 +7,6 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-# source gruvbox color pallet
-. "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 # remaping caps_lock to esc key
 
@@ -117,6 +115,21 @@ alias gp="git push"
 alias day='ncal -jb'
 alias pcal='ncal -b' #pretty calandar
 
+# poweroff alias 
+alias sd="poweroff --p"
+alias reboot="poweroff --reboot"
+
+# open rc files alias
+alias vimrc="vim ~/.vimrc"
+alias bashrc="vim ~/.bashrc"
+alias i3conf="vim ~/.config/i3/config"
+
+# source srup_mkdir function 
+[ -f $HOME/bin/_mkdir.sh ] && . $HOME/bin/_mkdir.sh
+
+# source functions and alias for managing virtual machines
+[ -f $HOME/bin/start_vms.sh ] && . $HOME/bin/start_vms.sh
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -142,3 +155,7 @@ if ! shopt -oq posix; then
 fi
 
 TERM=xterm-256color
+
+# enable vim-mode in the terminal
+set -o vi
+
