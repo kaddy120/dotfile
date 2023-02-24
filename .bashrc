@@ -79,50 +79,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -AF'
-alias l='ls -CF'
-alias sl='ls'
-alias ..='cd ..'
-alias ...='cd ../..'
-
-alias mkdir='mkdir -p'
-
-alias apti='sudo apt install'
-
-# some more gt aliases
-alias gs="git status"
-alias gc="git commit"
-alias gp="git push"
-
-#calendar aliases
-alias day='ncal -jb'
-alias pcal='ncal -b' #pretty calandar
-
-# poweroff alias 
-alias sd="poweroff --p"
-alias reboot="poweroff --reboot"
-
-# open rc files alias
-alias vimrc="vim ~/.vimrc"
-alias bashrc="vim ~/.bashrc"
-alias i3conf="vim ~/.config/i3/config"
 
 # source srup_mkdir function 
 [ -f $HOME/bin/_mkdir.sh ] && . $HOME/bin/_mkdir.sh
@@ -158,4 +116,28 @@ TERM=xterm-256color
 
 # enable vim-mode in the terminal
 set -o vi
+# ~/.bashrc
 
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    # echo "Initialising new SSH agent..."
+   /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    # echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    # ssh-add -q
+    ssh-add -q "$HOME/.ssh/_kaddy120" 
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
