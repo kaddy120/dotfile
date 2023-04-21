@@ -1,0 +1,26 @@
+! Swap Cas_Lock and Escape
+remove lock = Caps_Lock
+keysym Caps_Lock = Mode_switch 
+! keycode 9 = Caps_Lock NoSymbol Caps_Lock
+keycode 9 = Escape 
+
+! add lock = Mode_switch
+! Swap Control_L to Super_R
+remove control = Control_L
+remove mod4 = Super_L
+keysym Super_L = Control_L NoSymbol Control_L
+keysym Control_L = Super_L NoSymbol Super_L
+add mod4 = Super_L 
+add control = Control_L
+
+! keysym Super_L = ISO_Level3_Shift
+! Map keycode 37(mapped to supper_L above) to Mode_switch
+! keycode 37 = Mode_switch 
+
+! map h, j, k, l to arrow key when pressed in combination with Mode_switch
+keycode 43 = h H Left Left  
+keycode 44 = j J Down Down  
+keycode 45 = k K Up Up    
+keycode 46 = l L Right Right  
+
+keycode 108 = Alt_L NoSymbol Alt_L

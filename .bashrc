@@ -141,3 +141,6 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+# bash splash message.
+figlet -cl "Make a mess; perfectionsm is oppression"
