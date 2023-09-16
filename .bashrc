@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 export PATH=$PATH:$HOME/go/bin
+
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -144,3 +146,19 @@ fi
 
 # bash splash message.
 figlet -cl "Make a mess; perfectionsm is oppression"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# fzf 
+# change the default util, find, that fzf uses to search for files to fd-find
+# fd-find ignores files listed in .gitignore
+export FZF_DEFAULT_COMMAND="fdfind --type f"
+
+# show preview window by default
+export FZF_DEFAULT_OPTS="--preview 'batcat --color=always {}'"
+
+# source fzf key-binding 
+# Ctrl-t to start fzf
+# Ctrl-r to search for history command
+# Alt-c quickly switch to subdirectory
+source /usr/share/fzf/shell/key-bindings.bash
+
