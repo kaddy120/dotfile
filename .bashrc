@@ -145,7 +145,7 @@ else
 fi
 
 # bash splash message.
-figlet -cl "Make a mess; perfectionsm is oppression"
+# figlet -cl "Make a mess; perfectionsm is oppression"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # fzf 
@@ -162,3 +162,12 @@ export FZF_DEFAULT_OPTS="--preview 'batcat --color=always {}'"
 # Alt-c quickly switch to subdirectory
 source /usr/share/fzf/shell/key-bindings.bash
 
+# only display the current directory in the termianl prompt
+PS1='\[\033[32;1m\]\u@\h\[\033[00m\]:\[\033[34;1m\]\W\[\033[00m\]$ '
+
+## add flycli to path
+export FLYCTL_INSTALL="/home/kaddy120/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+# update docker group to include user
+# newgrp docker

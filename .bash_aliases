@@ -10,6 +10,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+alias open='xdg-open'
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -AF'
@@ -36,9 +38,14 @@ alias reboot="poweroff --reboot"
 
 # open rc files alias
 alias vimrc="vim ~/.vimrc"
+alias nvimrc="nvim ~/.config/nvim/"
 alias bashrc="nvim ~/.bashrc"
 alias i3conf="nvim ~/.config/i3/config"
 alias vim='nvim'
 alias bat='batcat'
 
-alias notes="nvim ~/Notes"
+alias notes="nvim ~/workspace/Notes"
+
+# start a node repl server that allows me to 
+# run a .clear cmd to remove global variables i have decleared
+alias n='node -e "repl.start()"'
