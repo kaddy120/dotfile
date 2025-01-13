@@ -4,13 +4,12 @@ keysym Caps_Lock = Mode_switch
 ! keycode 9 = Caps_Lock NoSymbol Caps_Lock
 keycode 9 = Escape 
 
-! add lock = Mode_switch
 ! Swap Control_L to Super_R
 remove control = Control_L
-remove mod4 = Super_L
-keysym Super_L = Control_L NoSymbol Control_L
-keysym Control_L = Super_L NoSymbol Super_L
-add mod4 = Super_L 
+remove mod4 = Super_R
+keysym Super_R = Control_L NoSymbol Control_L
+! keysym Control_L = Super_L NoSymbol Super_L
+add mod4 = Super_R 
 add control = Control_L
 
 ! keysym Super_L = ISO_Level3_Shift
@@ -23,4 +22,7 @@ keycode 44 = j J Down Down
 keycode 45 = k K Up Up    
 keycode 46 = l L Right Right  
 
-keycode 108 = Alt_L NoSymbol Alt_L
+! keycode 108 = Super_L NoSymbol Super_L
+keycode 108 = Super_L NoSymbol Super_L
+! keycode 135 = Control_L NoSymbol Control_L --> Menu key that doesn't want to remap
+

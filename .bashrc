@@ -1,7 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-export PATH=$PATH:$HOME/go/bin
 
 
 # If not running interactively, don't do anything
@@ -129,7 +128,7 @@ function start_agent {
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
     # ssh-add -q
-    ssh-add -q "$HOME/.ssh/_kaddy120" 
+    [ -f "$HOME/.ssh/_kaddy120" ] && ssh-add -q "$HOME/.ssh/_kaddy120" 
 }
 
 # Source SSH settings, if applicable
@@ -160,14 +159,40 @@ export FZF_DEFAULT_OPTS="--preview 'batcat --color=always {}'"
 # Ctrl-t to start fzf
 # Ctrl-r to search for history command
 # Alt-c quickly switch to subdirectory
-source /usr/share/fzf/shell/key-bindings.bash
+[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash
 
 # only display the current directory in the termianl prompt
 PS1='\[\033[32;1m\]\u@\h\[\033[00m\]:\[\033[34;1m\]\W\[\033[00m\]$ '
 
-## add flycli to path
-export FLYCTL_INSTALL="/home/kaddy120/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+## add ant to path
+#
+
+# export JAVA_HOME="$HOME/myprograms/jdk8u402-b06"
+export JAVA_HOME="$HOME/myprograms/amazon-corretto-17.0.11.9.1-linux-x64"
+export ANT_HOME="$HOME/myprograms/apache-ant-1.10.14"
+export WILDFLY_HOME="$HOME/myprograms/wildfly-32.0.0.Final"
+export TOMCAT_HOME="$HOME/myprograms/apache-tomcat-9.0.89"
+export CATALINA_HOME="$HOME/myprograms/apache-tomcat-9.0.89"
+export MAVEN_HOME="$HOME/myprograms/apache-maven-3.9.6"
+export PATH="$PATH:$ANT_HOME/bin"
+export PATH="$PATH:$TOMCAT_HOME/bin"
+export PATH="$PATH:$MAVEN_HOME/bin"
+export PATH="$HOME/myprograms/idea-IU-241.15989.150/bin:$PATH"
 
 # update docker group to include user
 # newgrp docker
+
+# Esc+v start editing the terminal command in nvim
+export PSQL_EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
+export VISUAL="/usr/local/bin/nvim"
+
+# environment variables to connect to psql
+export PGHOST="localhost"
+export PGPORT="5432"
+export PGUSER="postgres"
+
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

@@ -25,10 +25,9 @@ set scrolloff=5
 set ignorecase
 set smartcase
 set multiple-cursors
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set relativenumber
 set number
-set relativenumber
 set idearefactormode=keep
 set ideajoin
 set ideaput
@@ -47,7 +46,6 @@ set showmode
 
 "" map leader to space
 nmap <space> <Leader>
-set relativenumber
 
 " -- reload ideavimrc
 " map <leader>rc <cmd>:source ~/.ideavimrc <CR>
@@ -79,6 +77,8 @@ map <C-l> <C-w>l
 " -- move half a page up and down, and position a cursor in the middle of the screen
 map <C-d> <C-d>zz
 map <C-u> <C-u>zz
+map L $
+map H ^
 
 " -- Switch between tabs.
 map <Tab> <Action>(NextTab)
@@ -90,28 +90,30 @@ vmap "'" '`'
 omap "'" '`'
 
 " -- move a line up and down.
-nnoremap <C-j> :m +1<CR>
-nnoremap <C-k> :m -2<CR>
-inoremap <C-j> <Esc>:m +1<CR>gi
-inoremap <C-k> <Esc>:m -2<CR>gi
+nnoremap <C-S-j> :m +1<CR>
+nnoremap <C-S-k> :m -2<CR>
+inoremap <C-S-j> <Esc>:m +1<CR>gi
+inoremap <C-S-k> <Esc>:m -2<CR>gi
 
 " system clipboard
-vmap <leader>yiw "+yiw
-nmap <leader>yiw "+yiw
+"vmap <leader>yiw "+yiw
+"nmap <leader>yiw "+yiw
+nmap <leader>y "+y
 vmap <leader>y "+y
 vmap <leader>d "_d
-nmap <leader>y "+yy
-nmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>p "+p
-vmap <leader>P "+P
+nmap <leader>d "_d
+"nmap <leader>p "+p
+"nmap <leader>P "+P
+"vmap <leader>p "+p
+"vmap <leader>P "+P
 
-map mc <A-n>
+" map mc <A-n>
 map mp <Action>(PasteMultiple)
+vmap mp <Action>(PasteMultiple)
 
 " formatting
-map == <Action>(ReformatCode)
-vmap == <Action>(ReformatCode)
+map <leader>f <Action>(ReformatCode)
+vmap <leader>f <Action>(ReformatCode)
 map -- <Action>(OptimizeImports)
 map -- <Action>(OptimizeImports)
 
@@ -124,14 +126,7 @@ map <leader>sg <Action>(FindInPath)
 vmap <leader>sg <Action>(FindInPath)
 map <leader>su <Action>(FindUsages)
 vmap <leader>su <Action>(FindUsages)
-map <leader>se <Action>(SearchEverywhere)
 map <leader>ss <Action>(FileStructurePopup)
-
-
-" extract
-map <leader>iv <Action>(IntroduceVariable)
-map <leader>em <Action>(ExtractMethod)
-map <leader>ic <Action>(IntroduceConstant)
 
 " file navigation
 map <leader>gh <Action>(Back)
@@ -144,37 +139,42 @@ map <leader>g, <Action>(JumpToLastChange)
 map <leader>g. <Action>(JumpToNextChange)
 map <leader>gd <Action>(GotoDeclaration)
 map <leader>gr <Action>(RecentFiles)
+map <leader>gg <Action>(RecentFiles)
 map <leader>gc <Action>(GotoClass)
 vmap <leader>gc <Action>(GotoClass)
+map <leader>sf <Action>(GotoClass)
+vmap <leader>sf <Action>(GotoClass)
 map <leader>gf <Action>(GotoFile)
 vmap <leader>gf <Action>(GotoFile)
-map <leader>ga <Action>(GotoAction)
-vmap <leader>ga <Action>(GotoAction)
+map ,a <Action>(GotoAction)
+vmap ,a <Action>(GotoAction)
 map <leader>ww <Action>(HideAllWindows)
 " nnoremap gp :NERDTree <CR>
 map <leader>gt <Action>(GotoTest)
+
 map <leader>rc <Action>(RunClass)
+map <leader>rr <Action>(Run)
+
 map ,rc <Action>(ChooseRunConfiguration)
 map <leader>gq <Action>(QuickList)
 map <leader>ns <Action>(NewScratchFile)
 map <leader>nf <Action>(NewElementSamePlace)
-map <leader>ge <Action>(Generate)
 vmap <leader>re <Action>(Replace)
 map <leader>re <Action>(Replace)
 " vmap / <Action>(Find)
 " map / <Action>(Find)
 map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>ge <Action>(Generate)
 
 " terminal shortcuts
 map <C-t> <Action>(ActivateTerminalToolWindow)
 map <leader>t <Action>(Terminal.OpenInTerminal)
 
 " useful
-nnoremap <C-A> gg<S-v>G
+" nnoremap <C-A> gg<S-v>G
 
 " NerdTree
-map <C-e> :NERDTree<CR>
-map <C-b> :NERDTreeToggle<CR>
+map <leader>e :NERDTree<CR>
 
 map <leader>xx :source ~/.ideavimrc <CR>
 
@@ -182,14 +182,13 @@ map <leader>xx :source ~/.ideavimrc <CR>
 map <leader>st <Action>(ShowSettings)
 " [c]ode [a]ction.
 map <leader>ca <Action>(ShowIntentionActions)
-" [i]nsert code
-map <C-i> <Action>(Generate)
+" [i]nser code
 map <C-n> <Action>(NewElement)
 map <C-s> <Action>(SaveAll)
 
 " Refactoring
-vmap <leader>rm <Action>(ExtractMethod)
 map <leader>rm <Action>(ExtractMethod)
+vmap <leader>rm <Action>(ExtractMethod)
 map <leader>rv <Action>(IntroduceVariable)
 vmap <leader>rv <Action>(IntroduceVariable)
 map <leader>rC <Action>(IntroduceConstant)
@@ -200,3 +199,14 @@ map <leader>rp <Action>(IntroduceParameter)
 vmap <leader>rp <Action>(IntroduceParameter)
 map <leader>rin <Action>(Inline)
 map <leader>rn <Action>(RenameElement)
+
+" extract
+map <leader>iv <Action>(IntroduceVariable)
+map <leader>em <Action>(ExtractMethod)
+map <leader>ic <Action>(IntroduceConstant)
+map <leader>sd <Action>(SurroundWith)
+map <leader>th <Action>(TypeHierarchy)
+
+" jupyter notebook
+map <leader>am <Action>(NotebookCellBorderInsertMarkdownCellAboveAction)
+map <leader>ac <Action>(NotebookCellBorderInsertCellAboveAction)

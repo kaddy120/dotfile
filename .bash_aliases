@@ -25,6 +25,7 @@ alias apti='sudo apt install'
 
 # some more gt aliases
 alias gs="git status"
+alias gc="git checkout"
 alias gc="git commit"
 alias gp="git push"
 
