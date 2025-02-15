@@ -196,3 +196,6 @@ export PGUSER="postgres"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+# Load github private key
+ssh-add ~/.ssh/github_key &> /dev/null
